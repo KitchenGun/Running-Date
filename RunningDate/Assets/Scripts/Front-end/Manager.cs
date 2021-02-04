@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
     private static Manager instance = null;
-    // Start is called before the first frame update
+
+
     void Awake()
     {
+        #region singletonObject
         if (null == instance)
         {
             instance = this;
@@ -18,13 +20,14 @@ public class Manager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        #endregion
     }
 
-    // Update is called once per frame
-    #region go MovieSelect
-    public void MovieSelect ()
+
+    #region Scene움직임
+    public void SceneLoad(int idx)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(idx);
     }
     #endregion
 
