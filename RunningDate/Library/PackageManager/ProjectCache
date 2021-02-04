@@ -5,7 +5,11 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 637480229789116770
+=======
+      ticks: 637480231033494424
+>>>>>>> master
     m_Hash: 3670018741
   m_LockFileStatus:
     m_FilePath: D:/Hackaton/Running-Date/RunningDate/Packages/packages-lock.json
@@ -13,7 +17,11 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 637480304226691500
+=======
+      ticks: 637480256601178522
+>>>>>>> master
     m_Hash: 664634206
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
