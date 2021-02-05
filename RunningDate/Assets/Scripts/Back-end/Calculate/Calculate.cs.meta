@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:RunningDate/Assets/Scripts/Back-end/Calculate/Calculate.cs.meta
-guid: e79c86d392b98b441a3484b8027a62eb
-=======
-guid: 6e92d72c7c05099448b297dcdbdc55c2
->>>>>>> Stashed changes:RunningDate/Assets/Scripts/Back-end/Naver/navermovies.cs.meta
+guid: 43c195fecc920a14bb732000bb070526
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
