@@ -10,15 +10,12 @@ using Newtonsoft.Json.Linq;
 
 public class navermovies : MonoBehaviour
 {
-
-
-    public void Input()
+    public Movie Print(string name)
     {
-        //search a movie
-        Debug.Log("Search a movie : ");
-        string query = "해리";
+
+        string query = name;
         //movie api with 5 movie search results
-        string url = "https://openapi.naver.com/v1/search/movie?query=" + query + "&display=4";
+        string url = "https://openapi.naver.com/v1/search/movie?query=" + query + "&display=1";
 
         //requesting the http from given api url
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -46,22 +43,31 @@ public class navermovies : MonoBehaviour
                 Movies.Add(new movieLists(itemObj["title"].ToString(), itemObj["subtitle"].ToString(), itemObj["director"].ToString(), itemObj["userRating"].ToString()));
             }
             Debug.Log("The movies are as follow !!");
+            Movie m = new Movie();
 
-            foreach (var movie in Movies)
-            {
-                //showing the movie results
-                Debug.Log("Korean name : " + movie.korname);
-                Debug.Log("English name : " + movie.engname);
-                Debug.Log("Director name : " + movie.director);
-                Debug.Log("Movie ratings : " + movie.ratings);
-                Debug.Log("==================================");
-            }
+            m.Name = Movies[0].korname;
+            m.EName = Movies[0].engname;
+            m.UserRating = Movies[0].ratings;
+            m.DirectorName = Movies[0].director;
+            return m;
+
+            //foreach (var movie in Movies)
+            // {
+                
+                ////showing the movie results
+                //Debug.Log("Korean name : " + movie.korname);
+                //Debug.Log("English name : " + movie.engname);
+                //Debug.Log("Director name : " + movie.director);
+                //Debug.Log("Movie ratings : " + movie.ratings);
+                //Debug.Log("==================================");
+            // }
 
 
         }
         else
         {
             Debug.Log("Error " + status);
+            return null;
         }
     }
 
@@ -83,6 +89,5 @@ public class navermovies : MonoBehaviour
         }
 
     }
-
 
 }
