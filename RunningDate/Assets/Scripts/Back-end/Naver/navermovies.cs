@@ -11,11 +11,9 @@ using Newtonsoft.Json.Linq;
 public class navermovies : MonoBehaviour
 {
 
-
-    public void Input()
+    public void Start()
     {
-        //search a movie
-        Debug.Log("Search a movie : ");
+       
         string query = "해리";
         //movie api with 5 movie search results
         string url = "https://openapi.naver.com/v1/search/movie?query=" + query + "&display=4";
