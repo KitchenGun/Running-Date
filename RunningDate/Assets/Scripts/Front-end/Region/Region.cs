@@ -14,6 +14,6 @@ public class Region : MonoBehaviour
         region = this.gameObject.name;
         calculate.SelectMovie(movie.name);
         calculate.SelectRegion(region);
-        calculate.CalculateResult();
+        //calculate.CalculateResult();
     }
 }

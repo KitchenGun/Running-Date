@@ -111,7 +111,7 @@ public class Calculate : MonoBehaviour
         Debug.Log(SquaredX);
     }
     //주차별 결과값
-    public void CalculateResult()
+    public float CalculateResult(int week)
     {
         for (int i = 1; i < 6; i++)
         {
@@ -120,9 +120,8 @@ public class Calculate : MonoBehaviour
             float y = Mathf.Pow(i, 6f) + Mathf.Pow(10, SquaredX);
             y = Mathf.Round(y * 100) * 0.01f;
             Week[i - 1] = Mathf.Round((x / y) * 10) * 0.1f;
-            //확인용 debug log
-            Debug.Log(i + "주차" + "" + Week[i - 1]);
         }
+        return Week[week];
     }
 
     #endregion
