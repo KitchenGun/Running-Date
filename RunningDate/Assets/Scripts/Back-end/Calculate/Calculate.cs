@@ -28,20 +28,22 @@ public class Calculate : MonoBehaviour
         Week = new float[5];
     }
 
+    #region BringFromNaverAPI
     #region Select Movie Func
     public void SelectMovie(string name)
     {
         MovieName = name;
     }
     #endregion
-
+    #endregion
+    #region BringFromUI
     #region Select Region Func
     public void SelectRegion(string name)
     {
         Region = name;
     }
     #endregion
-
+    #endregion
     #region Calculate Func
 
     //(개봉주의 판매량과 이번 주 매출액점유율)*3.5+(관객수/상영횟수)*60 
@@ -67,6 +69,7 @@ public class Calculate : MonoBehaviour
     }
 
     #endregion
+    #region BringFromDB
 
     #region setThisSalesShare Func
     public void setThisSalesShare(float value)
@@ -75,5 +78,27 @@ public class Calculate : MonoBehaviour
     }
     #endregion
 
+    #region setBeginSalesShare Func
+    public void setBeginSalesShare(float value)
+    {
+        BeginSalesShare = value;
+    }
+    #endregion
+
+    #region setAudience
+    private void setAudience(int value)
+    {
+        Audience = value;
+    }
+    #endregion
+
+    #region setScreen
+    private void setScreen(int value)
+    {
+        Screen = value;
+    }
+    #endregion
+
+    #endregion
 
 }
