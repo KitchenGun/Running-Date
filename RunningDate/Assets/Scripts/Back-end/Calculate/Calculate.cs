@@ -77,6 +77,7 @@ public class Calculate : MonoBehaviour
     public void SelectMovie(string name)
     {
         MovieName = name;
+        Debug.Log(name);
     }
     #endregion
     #endregion
