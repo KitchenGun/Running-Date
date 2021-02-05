@@ -65,6 +65,15 @@ public class Calculate : MonoBehaviour
             Debug.Log(i + "주차" + "" + Week[i - 1]);
         }
     }
-    
+
     #endregion
+
+    #region setThisSalesShare Func
+    public void setThisSalesShare(float value)
+    {
+        ThisSalesShare = value;
+    }
+    #endregion
+
+
 }
