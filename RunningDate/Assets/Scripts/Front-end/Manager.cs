@@ -30,7 +30,7 @@ public class Manager : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        
+
     }
     #endregion
 
@@ -55,7 +55,7 @@ public class Manager : MonoBehaviour
         Panel = GameObject.Find("Main Camera").transform.GetChild(0).GetChild(GameObject.Find("Main Camera").transform.childCount).gameObject;
         BlackIn(3f);
 
-        if(GetSceneIndex()==0)
+        if (GetSceneIndex() == 0)
         {
             Invoke("Sceneload1", 6f);
         }
@@ -140,3 +140,4 @@ public class Manager : MonoBehaviour
     #endregion
 
 }
+

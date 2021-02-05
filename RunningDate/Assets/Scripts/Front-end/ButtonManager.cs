@@ -20,7 +20,7 @@ public class ButtonManager : MonoBehaviour
     #region 버튼 클릭
     public void ButtonInput()
     {
-        button=EventSystem.current.currentSelectedGameObject;
+        button = EventSystem.current.currentSelectedGameObject;
     }
     #endregion
 
