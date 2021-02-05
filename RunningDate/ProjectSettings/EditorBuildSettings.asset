@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MovieSelect.unity
     guid: e6a74c1eae787f247a5da80369d5bc34
+  - enabled: 1
+    path: Assets/Scenes/MovieLocation.unity
+    guid: 7e655fce8d8368844adbb4e87f0a139a
   m_configObjects: {}

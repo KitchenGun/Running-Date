@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour
 {
     private static Manager instance = null;
+
     #region fadeinout효과 변수
     private GameObject Panel;
     Color blackColor = Color.black;
@@ -47,7 +48,6 @@ public class Manager : MonoBehaviour
             Destroy(this.gameObject);
         }
         #endregion
-
     }
 
     private void Start()
@@ -57,7 +57,7 @@ public class Manager : MonoBehaviour
 
         if(GetSceneIndex()==0)
         {
-            Invoke("Sceneload1", 6f);
+            Invoke("Sceneload1", 4f);
         }
     }
 
