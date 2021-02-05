@@ -6,7 +6,7 @@ public class Calculate : MonoBehaviour
 {
     #region Movie info
     //select in naver
-    private string MovieName;
+    public string MovieName;
     //find in db
     private float ThisSalesShare;
     private float BeginSalesShare;
