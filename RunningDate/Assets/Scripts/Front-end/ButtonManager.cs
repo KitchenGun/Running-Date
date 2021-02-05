@@ -21,8 +21,8 @@ public class ButtonManager : MonoBehaviour
     #region 버튼 클릭
     public void ButtonInput()
     {
-        string name= EventSystem.current.currentSelectedGameObject.transform.parent.name;
-        button=EventSystem.current.currentSelectedGameObject.transform.gameObject;
+        string name = EventSystem.current.currentSelectedGameObject.transform.parent.name;
+        button = EventSystem.current.currentSelectedGameObject.transform.gameObject;
         FindButtonNameFunc(name);
     }
     #endregion

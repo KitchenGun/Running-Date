@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 public class navermovies : MonoBehaviour
 {
- 
+
 
     public void Input()
     {
@@ -38,7 +38,7 @@ public class navermovies : MonoBehaviour
             //declaring the list for the movie results
             List<movieLists> Movies = new List<movieLists>();
 
-            
+
 
             foreach (JObject itemObj in array)
             {

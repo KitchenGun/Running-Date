@@ -25,7 +25,7 @@ public class DB : MonoBehaviour
     IEnumerator DBCreate()
     {
         string filepath = string.Empty;
-        if(Application.platform == RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android)
         {
             filepath = Application.persistentDataPath + "/DB.db";
             if (!File.Exists(filepath))
@@ -51,7 +51,7 @@ public class DB : MonoBehaviour
     public string GetDBFilePath()
     {
         string str = string.Empty;
-        if(Application.platform == RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android)
         {
             str = "URI=file:" + Application.persistentDataPath + "/DB.db";
         }
@@ -68,7 +68,7 @@ public class DB : MonoBehaviour
     {
         try
         {
-            
+
             IDbConnection dbConnection = new SqliteConnection(GetDBFilePath());
             dbConnection.Open();
             if (dbConnection.State == ConnectionState.Open)
@@ -92,23 +92,20 @@ public class DB : MonoBehaviour
         IDbConnection dbConnection = new SqliteConnection(GetDBFilePath());
         dbConnection.Open();
         IDbCommand dbCommand = dbConnection.CreateCommand();
-        dbCommand.CommandText = query;      
-        IDataReader dataReader = dbCommand.ExecuteReader(); 
+        dbCommand.CommandText = query;
+        IDataReader dataReader = dbCommand.ExecuteReader();
         while (dataReader.Read())
         {
-            Debug.Log(dataReader.GetInt32(0) + "," + dataReader.GetString(1) + "," + dataReader.GetString(2) + "," 
+            Debug.Log(dataReader.GetInt32(0) + "," + dataReader.GetString(1) + "," + dataReader.GetString(2) + ","
                 + dataReader.GetFloat(3) + "," + dataReader.GetInt32(4) + "," + dataReader.GetInt32(5));
         }
-        dataReader.Dispose();       
+        dataReader.Dispose();
         dataReader = null;
         dbCommand.Dispose();
         dbCommand = null;
-        dbConnection.Close();   
+        dbConnection.Close();
         dbConnection = null;
     }
     #endregion
 
 }
-
-
-

@@ -8,3 +8,4 @@ public class Movie : MonoBehaviour
     public int UserRating { get; private set; }
     public string DirectorName { get; private set; }
 }
+

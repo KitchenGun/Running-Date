@@ -27,7 +27,7 @@ public class Calculate : MonoBehaviour
     {
         int a = 0;
         string[] Date_ymd = value.Split('-');
-        int[] ymd = { 0, 0, 0 }; 
+        int[] ymd = { 0, 0, 0 };
         for (int i = 0; i < 2; i++)
         {
             if (int.TryParse(Date_ymd[i], out int j))
@@ -37,7 +37,7 @@ public class Calculate : MonoBehaviour
         }
         if (Date_ymd[0] == "2021")
         {
-            if(ymd[1] == 1)
+            if (ymd[1] == 1)
             {
                 if (25 <= ymd[2])
                 {
