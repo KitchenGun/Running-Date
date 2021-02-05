@@ -29,10 +29,6 @@ public class ButtonManager : MonoBehaviour
     {
         switch (button.name)
         {
-            case "InputName":
-                //버튼의 자식으로 있는 textbox의 내용에 접근
-                //네이버 api 함수를 활용하여서 접근
-                break;
             case "MovieImage":
                 //클릭 버튼의 자식의 이름은 영화 이름
                 calculate.SelectMovie(button.transform.GetChild(0).name);
