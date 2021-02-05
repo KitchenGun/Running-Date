@@ -5,10 +5,10 @@ using System.IO;
 using Mono.Data.SqliteClient;
 using UnityEngine.Networking;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DB : MonoBehaviour
 {
-
     void Start()
     {
         DBConnectionCheck();
@@ -30,7 +30,7 @@ public class DB : MonoBehaviour
             filepath = Application.persistentDataPath + "/DB.db";
             if (!File.Exists(filepath))
             {
-                UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!assets/DB.db");
+                UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/DB.db");
                 unityWebRequest.downloadedBytes.ToString();
                 yield return unityWebRequest.SendWebRequest().isDone;
                 File.WriteAllBytes(filepath, unityWebRequest.downloadHandler.data);
