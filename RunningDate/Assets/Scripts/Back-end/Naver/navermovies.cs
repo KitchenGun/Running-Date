@@ -10,52 +10,53 @@ using Newtonsoft.Json.Linq;
 
 public class navermovies : MonoBehaviour
 {
-    public GameObject Image;
-
-    private void ImageSet(string url)
-    {
-        //Image.GetComponent<Image>().sprite=
-    }
+ 
 
     public void Input()
     {
+        //search a movie
         Debug.Log("Search a movie : ");
         string query = "해리";
-        string url = "https://openapi.naver.com/v1/search/movie?query=" + query + "&display=5";
+        //movie api with 5 movie search results
+        string url = "https://openapi.naver.com/v1/search/movie?query=" + query + "&display=4";
 
-
+        //requesting the http from given api url
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         request.Headers.Add("X-Naver-Client-Id", "pD3FuZnjsrm1nXgP8isw");
         request.Headers.Add("X-Naver-Client-Secret", "wZOutcA8wg");
         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        //checking the status of the http response if its okay or not
         string status = response.StatusCode.ToString();
         if (status == "OK")
         {
             Stream stream = response.GetResponseStream();
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             string text = reader.ReadToEnd();
-            //Console.WriteLine(text);
-
-            //List<movieLists> m =JsonConvert.DeserializeObject<List<movieLists>>(text);
+            //changing string into json objects
             JObject obj = JObject.Parse(text);
             JArray array = JArray.Parse(obj["items"].ToString());
+            //declaring the list for the movie results
+            List<movieLists> Movies = new List<movieLists>();
 
-            Debug.Log("The movies are as follow !!");
+            
 
             foreach (JObject itemObj in array)
             {
-                APIExamSearchBlogg.movieLists movies = new APIExamSearchBlogg.movieLists();
-                movies.korname = itemObj["title"].ToString();
-                Debug.Log("Korean name : " + movies.korname);
-                movies.engname = itemObj["subtitle"].ToString();
-                Debug.Log("English name : " + movies.engname);
-                movies.publishDate = itemObj["pubDate"].ToString();
-                Debug.Log("Published Date : " + movies.publishDate);
-                movies.director = itemObj["director"].ToString();
-                Debug.Log("Director name : " + movies.director);
-                movies.link = itemObj["link"].ToString();
-                Debug.Log("Movie Link : " + movies.link); ;
+                //Adding movie results to the declared list
+                Movies.Add(new movieLists(itemObj["title"].ToString(), itemObj["subtitle"].ToString(), itemObj["director"].ToString(), itemObj["userRating"].ToString()));
             }
+            Debug.Log("The movies are as follow !!");
+
+            foreach (var movie in Movies)
+            {
+                //showing the movie results
+                Debug.Log("Korean name : " + movie.korname);
+                Debug.Log("English name : " + movie.engname);
+                Debug.Log("Director name : " + movie.director);
+                Debug.Log("Movie ratings : " + movie.ratings);
+                Debug.Log("==================================");
+            }
+
 
         }
         else
@@ -64,17 +65,24 @@ public class navermovies : MonoBehaviour
         }
     }
 
-    public class APIExamSearchBlogg
+    //declaring class for saving movie information
+    public class movieLists
     {
-        public class movieLists
-        {
-            public string korname { get; set; }
-            public string engname { get; set; }
-            public string director { get; set; }
-            public string publishDate { get; set; }
-            public string link { get; set; }
+        public string korname;
+        public string engname;
+        public string director;
+        public string ratings;
 
+        //Constructor
+        public movieLists(string korname, string engname, string director, string ratings)
+        {
+            this.korname = korname;
+            this.engname = engname;
+            this.director = director;
+            this.ratings = ratings;
         }
 
     }
+
+
 }
