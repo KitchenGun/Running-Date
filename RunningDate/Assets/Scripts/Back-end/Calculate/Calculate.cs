@@ -12,6 +12,8 @@ public class Calculate : MonoBehaviour
     private float BeginSalesShare;
     private int Audience;
     private int Screen;
+    private string Date;
+    private int week;
     #endregion
     #region Select Region
     private string Region;
@@ -19,6 +21,48 @@ public class Calculate : MonoBehaviour
     #region CalculateDate()
     private float SquaredX;
     private float[] Week;// 주차별 확률값이 저장이 됨
+    #endregion
+    #region weekcalculate
+    public int weekcalculate(string value)// 연월일 추출
+    {
+        int a = 0;
+        string[] Date_ymd = value.Split('-');
+        int[] ymd = { 0, 0, 0 }; 
+        for (int i = 0; i < 2; i++)
+        {
+            if (int.TryParse(Date_ymd[i], out int j))
+            {
+                ymd[i] = j;
+            }
+        }
+        if (Date_ymd[0] == "2021")
+        {
+            if(ymd[1] == 1)
+            {
+                if (25 <= ymd[2])
+                {
+                    a = 4;
+                    if (18 <= ymd[2])
+                    {
+                        a = 3;
+                        if (11 <= ymd[2])
+                        {
+                            a = 2;
+                            if (4 <= ymd[2])
+                            {
+                                a = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            a = 0;
+        }
+        return a;
+    }
     #endregion
 
 
@@ -46,11 +90,23 @@ public class Calculate : MonoBehaviour
     #endregion
     #region Calculate Func
 
-    //(개봉주의 판매량과 이번 주 매출액점유율)*3.5+(관객수/상영횟수)*60 
+    //(개봉주의 판매량과 이번 주 매출액점유율)*3.5+(관객수/상영횟수)/60 
     public void CalculateSquaredX()
     {
-        SquaredX = ((ThisSalesShare + BeginSalesShare) * 3.5f) + (Audience / Screen) * (1f / 60);
-        SquaredX = Mathf.Round(SquaredX * 100) * 0.01f;
+        if (weekcalculate(Date) < 1) // 개봉일이 1주차보다 전일 때
+        {
+            SquaredX = 0;
+        }
+        else
+        {
+            if (weekcalculate(Date) == 4) // 개봉주가 4주차일때
+            {
+                SquaredX = (ThisSalesShare * 7f) + (Audience / Screen) * (1f / 60);
+                SquaredX = Mathf.Round(SquaredX * 100) * 0.01f;
+            }
+            SquaredX = ((ThisSalesShare + BeginSalesShare) * 3.5f) + (Audience / Screen) * (1f / 60);
+            SquaredX = Mathf.Round(SquaredX * 100) * 0.01f;
+        }
         Debug.Log(SquaredX);
     }
     //주차별 결과값
@@ -86,19 +142,25 @@ public class Calculate : MonoBehaviour
     #endregion
 
     #region setAudience
-    private void setAudience(int value)
+    public void setAudience(int value)
     {
         Audience = value;
     }
     #endregion
 
     #region setScreen
-    private void setScreen(int value)
+    public void setScreen(int value)
     {
         Screen = value;
     }
     #endregion
 
+    #region BeginDate
+    public void BeginDate(string value)
+    {
+        Date = value;
+    }
+    #endregion
     #endregion
 
 }
