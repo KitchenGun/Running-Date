@@ -17,13 +17,14 @@ public class Calculate : MonoBehaviour
     #endregion
     #region Select Region
     private string Region;
+    public string region;
     #endregion
     #region CalculateDate()
     private float SquaredX;
     private float[] Week;// 주차별 확률값이 저장이 됨
     #endregion
     #region weekcalculate
-    public int weekcalculate(string value)// 연월일 추출
+    /*public int weekcalculate(string value)// 연월일 추출
     {
         int a = 0;
         string[] Date_ymd = value.Split('-');
@@ -62,9 +63,20 @@ public class Calculate : MonoBehaviour
             a = 0;
         }
         return a;
+    }*/
+    #endregion
+    #region RetunrnInt
+    public int RetunrnInt(float[] Week)
+    {
+        int a = 0;
+        if (Week[0] < 30)
+            a = 1;
+            if (Week[0] < 70)
+                a = 2;
+            else a = 3;
+        return a;
     }
     #endregion
-
 
     private void Start()
     {
@@ -86,6 +98,7 @@ public class Calculate : MonoBehaviour
     public void SelectRegion(string name)
     {
         Region = name;
+        region = Region;
     }
     #endregion
     #endregion
@@ -94,20 +107,12 @@ public class Calculate : MonoBehaviour
     //(개봉주의 판매량과 이번 주 매출액점유율)*3.5+(관객수/상영횟수)/60 
     public void CalculateSquaredX()
     {
-        if (weekcalculate(Date) < 1) // 개봉일이 1주차보다 전일 때
-        {
-            SquaredX = 0;
-        }
-        else
-        {
-            if (weekcalculate(Date) == 4) // 개봉주가 4주차일때
-            {
-                SquaredX = (ThisSalesShare * 7f) + (Audience / Screen) * (1f / 60);
-                SquaredX = Mathf.Round(SquaredX * 100) * 0.01f;
-            }
+        // 개봉일이 1주차보다 
+        
+          
             SquaredX = ((ThisSalesShare + BeginSalesShare) * 3.5f) + (Audience / Screen) * (1f / 60);
             SquaredX = Mathf.Round(SquaredX * 100) * 0.01f;
-        }
+        
         Debug.Log(SquaredX);
     }
     //주차별 결과값
@@ -115,11 +120,11 @@ public class Calculate : MonoBehaviour
     {
         for (int i = 1; i < 6; i++)
         {
-            float x = Mathf.Pow(10, (SquaredX + 1f));
+            float x = Mathf.Pow(10, SquaredX);
             x = Mathf.Round(x * 100) * 0.01f;
             float y = Mathf.Pow(i, 6f) + Mathf.Pow(10, SquaredX);
             y = Mathf.Round(y * 100) * 0.01f;
-            Week[i - 1] = Mathf.Round((x / y) * 10) * 0.1f;
+            Week[i - 1] = (1 - Mathf.Round((x / y) * 10))*100;
         }
         return Week[week];
     }
